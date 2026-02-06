@@ -13,6 +13,12 @@ const prevBtn = document.getElementById('prev-btn');
 const nextBtn = document.getElementById('next-btn');
 const pageCard = document.getElementById('page-card');
 const closeSidebarBtn = document.getElementById('close-sidebar');
+const ttsBtn = document.getElementById('tts-btn');
+
+// Speech Synthesis State
+let synth = window.speechSynthesis;
+let isSpeaking = false;
+let currentUtterance = null;
 
 // Initialize Story List
 function initStoryList() {
@@ -25,8 +31,80 @@ function initStoryList() {
     });
 }
 
+// Stop Speech Synthesis
+function stopSpeech() {
+    if (synth.speaking) {
+        synth.cancel();
+    }
+    isSpeaking = false;
+    if (ttsBtn) {
+        ttsBtn.innerText = '🔊 이야기 듣기';
+        ttsBtn.classList.remove('playing');
+    }
+    // Remove all highlights
+    document.querySelectorAll('.sentence').forEach(s => s.classList.remove('reading'));
+}
+
+// Speak Page Content
+function speakPage() {
+    if (isSpeaking) {
+        stopSpeech();
+        return;
+    }
+
+    const sentences = document.querySelectorAll('.sentence');
+    if (sentences.length === 0) return;
+
+    isSpeaking = true;
+    ttsBtn.innerText = '⏹ 듣기 중지';
+    ttsBtn.classList.add('playing');
+
+    let currentIdx = 0;
+
+    function speakNext() {
+        if (!isSpeaking || currentIdx >= sentences.length) {
+            stopSpeech();
+            return;
+        }
+
+        const sentenceEl = sentences[currentIdx];
+        const textToSpeak = sentenceEl.innerText;
+
+        // Visual Highlight
+        sentences.forEach(s => s.classList.remove('reading'));
+        sentenceEl.classList.add('reading');
+
+        // Ensure the highlighted sentence is visible
+        sentenceEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        currentUtterance = new SpeechSynthesisUtterance(textToSpeak);
+
+        // Find a warm Korean female voice if available
+        const voices = synth.getVoices();
+        const koVoice = voices.find(v => v.lang.includes('ko-KR') && (v.name.includes('Google') || v.name.includes('Yuna') || v.name.includes('Heami')));
+        if (koVoice) currentUtterance.voice = koVoice;
+
+        currentUtterance.rate = 0.9; // Slightly slower for better senior understanding
+        currentUtterance.pitch = 1.0;
+
+        currentUtterance.onend = () => {
+            currentIdx++;
+            speakNext();
+        };
+
+        currentUtterance.onerror = () => {
+            stopSpeech();
+        };
+
+        synth.speak(currentUtterance);
+    }
+
+    speakNext();
+}
+
 // Select a Story
 function selectStory(index) {
+    stopSpeech();
     if (currentStoryIndex === index) {
         sidebar.classList.remove('active');
         return;
@@ -52,6 +130,8 @@ function selectStory(index) {
 function renderPage() {
     if (currentStoryIndex === -1) return;
 
+    stopSpeech();
+
     // Start Fade Out
     pageContent.classList.add('fade-out');
 
@@ -65,7 +145,6 @@ function renderPage() {
 
         // Split content into sentences and wrap them
         const text = story.content[currentPageIndex];
-        // Improved regex to include smart quotes (”, “, etc.) and prevent them from being orphaned
         const sentences = text.match(/[^.!?]+[.!?]+[”"’'」〉)]*|[^.!?]+$/g) || [text];
 
         pageContent.innerHTML = '';
@@ -95,6 +174,7 @@ function renderPage() {
 
 // Navigation Events
 prevBtn.onclick = () => {
+    stopSpeech();
     if (currentPageIndex > 0) {
         currentPageIndex--;
         renderPage();
@@ -102,6 +182,7 @@ prevBtn.onclick = () => {
 };
 
 nextBtn.onclick = () => {
+    stopSpeech();
     const story = STORIES[currentStoryIndex];
     if (currentPageIndex < story.content.length - 1) {
         currentPageIndex++;
@@ -117,6 +198,12 @@ toggleMenuBtn.onclick = () => {
 closeSidebarBtn.onclick = () => {
     sidebar.classList.remove('active');
 };
+
+if (ttsBtn) {
+    ttsBtn.onclick = () => {
+        speakPage();
+    };
+}
 
 // Start the app
 initStoryList();

@@ -174,6 +174,39 @@ body {
   box-shadow: 0 0 0 #E65100;
 }
 
+.tts-btn {
+  position: absolute;
+  right: 20px;
+  background-color: #4CAF50;
+  /* Green color for play */
+  border: none;
+  padding: 8px 15px;
+  border-radius: 10px;
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s;
+  white-space: nowrap;
+  box-shadow: 0 4px 0 #2E7D32;
+}
+
+.tts-btn.playing {
+  background-color: #f44336;
+  /* Red color for stop */
+  box-shadow: 0 4px 0 #C62828;
+}
+
+.tts-btn:hover {
+  transform: translateY(-2px);
+}
+
+.tts-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 transparent;
+}
+
 .site-title {
   font-family: var(--font-title);
   font-size: 1.1rem;
@@ -234,6 +267,13 @@ body {
   padding: 10px 20px;
   border-radius: 20px;
   border-left: 8px solid var(--primary-color);
+  transition: all 0.3s ease;
+}
+
+.sentence.reading {
+  background-color: var(--primary-color);
+  box-shadow: 0 4px 15px rgba(255, 213, 79, 0.4);
+  transform: scale(1.02);
 }
 
 .story-title-display {
