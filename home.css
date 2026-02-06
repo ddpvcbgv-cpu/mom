@@ -1,0 +1,214 @@
+:root {
+    --primary-yellow: #FFD54F;
+    --accent-orange: #FF8F00;
+    --deep-orange: #E65100;
+    --bg-cream: #FFFDE7;
+    --text-brown: #3E2723;
+    --font-title: 'Gaegu', cursive;
+    --font-body: 'Gothic A1', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background: linear-gradient(180deg, #FFF9E6 0%, #FFFDE7 50%, #FFF3E0 100%);
+    color: var(--text-brown);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Top Logo */
+.logo-section {
+    margin-bottom: 60px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.logo {
+    max-width: 350px;
+    height: auto;
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.08));
+}
+
+/* Main Section */
+.main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 80px;
+}
+
+.center-photo {
+    max-width: 600px;
+    width: 90%;
+    height: auto;
+    border-radius: 30px;
+    box-shadow: 0 15px 50px rgba(255, 143, 0, 0.25);
+    border: 10px solid white;
+    animation: fadeInScale 1.2s ease-out 0.3s backwards;
+}
+
+/* Dedication Message */
+.message {
+    font-family: var(--font-title);
+    line-height: 2;
+    animation: fadeIn 1.5s ease-out 0.6s backwards;
+}
+
+.line1 {
+    font-size: 2rem;
+    color: var(--text-brown);
+    margin-bottom: 10px;
+}
+
+.line2 {
+    font-size: 2.5rem;
+    color: var(--deep-orange);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.line3 {
+    font-size: 2.2rem;
+    color: var(--accent-orange);
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+/* Enter Button */
+.enter-btn {
+    display: inline-block;
+    background-color: var(--accent-orange);
+    color: white;
+    text-decoration: none;
+    font-family: var(--font-title);
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 20px 60px;
+    border-radius: 50px;
+    box-shadow: 0 8px 0 var(--deep-orange);
+    transition: all 0.3s;
+    margin-top: 20px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.enter-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 13px 0 var(--deep-orange);
+}
+
+.enter-btn:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 0 var(--deep-orange);
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    color: #999;
+    font-size: 1rem;
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    .logo {
+        max-width: 250px;
+    }
+
+    .center-photo {
+        max-width: 100%;
+        border-width: 6px;
+    }
+
+    .line1 {
+        font-size: 1.5rem;
+    }
+
+    .line2 {
+        font-size: 1.8rem;
+    }
+
+    .line3 {
+        font-size: 1.6rem;
+    }
+
+    .enter-btn {
+        font-size: 1.5rem;
+        padding: 15px 40px;
+    }
+}

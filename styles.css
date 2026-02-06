@@ -1,0 +1,344 @@
+:root {
+  --primary-color: #FFD54F;
+  /* Vivid Yellow from Image 2 */
+  --secondary-color: #FFF9C4;
+  /* Light Yellow */
+  --bg-color: #FFFDE7;
+  /* Cream/Warm White background */
+  --text-color: #3E2723;
+  /* Deep Brown for warm readability */
+  --accent-orange: #FF8F00;
+  /* Vibrant Orange for buttons/highlights */
+  --sidebar-active: #424242;
+  /* Dark Gray for selected items in sidebar */
+  --sidebar-text-active: #FFFFFF;
+  --font-title: 'Gaegu', cursive;
+  /* Friendly handwriting for titles/buttons */
+  --font-body: 'Gothic A1', sans-serif;
+  /* Clean, readable Gothic for content */
+  --transition-speed: 0.4s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  height: 100vh;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Sidebar Menu - Refined with Image 2 style */
+.sidebar {
+  width: 350px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  box-shadow: 5px 0 25px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1000;
+  transform: translateX(-100%);
+}
+
+.sidebar.active {
+  transform: translateX(0);
+}
+
+.sidebar-header {
+  padding: 40px 25px;
+  background-color: var(--primary-color);
+  border-bottom: 3px solid var(--accent-orange);
+  display: flex;
+  /* Use flex for header layout */
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar-header h2 {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  color: var(--text-color);
+}
+
+.close-btn {
+  background-color: var(--accent-orange);
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #E65100;
+  transition: all 0.2s;
+}
+
+.close-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #E65100;
+}
+
+.close-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 0 #E65100;
+}
+
+.story-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.story-item {
+  padding: 18px 25px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: var(--secondary-color);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.story-item:hover {
+  background-color: var(--primary-color);
+}
+
+.story-item.active {
+  background-color: var(--sidebar-active);
+  color: var(--sidebar-text-active);
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Main Content */
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--bg-color);
+}
+
+.header {
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-bottom: 2px solid var(--primary-color);
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.menu-btn {
+  background-color: var(--accent-orange);
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+  transition: all 0.2s;
+  box-shadow: 0 4px 0 #E65100;
+  /* Button 3D effect */
+}
+
+.menu-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #E65100;
+}
+
+.menu-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 #E65100;
+}
+
+.site-title {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent-orange);
+}
+
+.site-title-link {
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.site-title-link:hover .site-title {
+  opacity: 0.8;
+}
+
+/* E-Book Page Area */
+.book-view {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 10% 40px 10%;
+  overflow-y: auto;
+}
+
+.page-card {
+  width: 100%;
+  max-width: 1400px;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100%;
+}
+
+.page-content {
+  font-family: var(--font-body);
+  font-size: 2.4rem;
+  line-height: 2.4;
+  word-break: keep-all;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  width: 100%;
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.sentence {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.4);
+  padding: 10px 20px;
+  border-radius: 20px;
+  border-left: 8px solid var(--primary-color);
+}
+
+.story-title-display {
+  font-family: var(--font-title);
+  margin-bottom: 50px;
+  text-align: left;
+  font-size: 2.2rem;
+  /* Larger font */
+  color: #E65100;
+  /* Deeper Orange */
+  font-weight: 900;
+  /* Extra Bold */
+  padding-bottom: 15px;
+  border-bottom: 3px dashed var(--primary-color);
+}
+
+.page-number {
+  margin-top: 60px;
+  font-family: var(--font-title);
+  text-align: center;
+  font-size: 1.5rem;
+  color: #bbb;
+  padding-bottom: 40px;
+}
+
+/* Pagination Controls */
+.controls {
+  padding: 30px 40px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  background-color: white;
+  border-top: 2px solid var(--primary-color);
+  z-index: 50;
+}
+
+.nav-btn {
+  background-color: var(--primary-color);
+  border: none;
+  padding: 15px 50px;
+  border-radius: 50px;
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  font-weight: 700;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: all 0.3s;
+  box-shadow: 0 5px 0 #FBC02D;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 0 #FBC02D;
+}
+
+.nav-btn:active:not(:disabled) {
+  transform: translateY(2px);
+  box-shadow: 0 0 0 #FBC02D;
+}
+
+.nav-btn:disabled {
+  background-color: #F5F5F5;
+  color: #CCC;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Fade Classes */
+.fade-out {
+  opacity: 0 !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .site-title {
+    font-size: 1.4rem;
+  }
+
+  .header {
+    padding: 10px 15px;
+  }
+
+  .menu-btn {
+    font-size: 1.1rem;
+    padding: 8px 15px;
+  }
+
+  .book-view {
+    padding: 30px 15px;
+  }
+
+  .page-content {
+    font-size: 1.5rem;
+    line-height: 2.1;
+    gap: 20px;
+  }
+
+  .sentence {
+    padding: 15px;
+    border-left-width: 5px;
+  }
+
+  .story-title-display {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+  }
+
+  .nav-btn {
+    font-size: 1.4rem;
+    padding: 12px 20px;
+    flex: 1;
+    max-width: 200px;
+  }
+}

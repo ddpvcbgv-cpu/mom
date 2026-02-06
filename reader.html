@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>최한실 이야기할머니의 전용 사이트</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Gothic+A1:wght@400;700;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Sidebar Menu -->
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>이야기 목록</h2>
+            <button id="close-sidebar" class="close-btn">닫기 ×</button>
+        </div>
+        <div id="story-list" class="story-list">
+            <!-- Story list items will be injected here -->
+        </div>
+    </aside>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Header -->
+        <header class="header">
+            <button id="toggle-menu" class="menu-btn">이야기 목록 ☰</button>
+            <a href="index.html" class="site-title-link">
+                <h1 class="site-title">최한실 이야기할머니의 전용 사이트</h1>
+            </a>
+            <div style="width: 120px;"></div> <!-- Spacer for balance -->
+        </header>
+
+        <!-- E-Book View Area -->
+        <section class="book-view">
+            <div id="page-card" class="page-card">
+                <div id="story-title-display" class="story-title-display"></div>
+                <div id="page-content" class="page-content">
+                    이야기를 선택해 주세요.
+                </div>
+                <div id="page-number" class="page-number"></div>
+            </div>
+        </section>
+
+        <!-- Navigation Controls -->
+        <footer class="controls">
+            <button id="prev-btn" class="nav-btn" disabled>
+                <span>◀</span> 이전 페이지
+            </button>
+            <button id="next-btn" class="nav-btn" disabled>
+                다음 페이지 <span>▶</span>
+            </button>
+        </footer>
+    </main>
+
+    <!-- Scripts -->
+    <script src="stories.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
