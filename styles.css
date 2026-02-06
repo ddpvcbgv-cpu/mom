@@ -133,32 +133,35 @@ body {
 }
 
 .header {
-  padding: 15px 40px;
+  padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  /* Center the title */
   align-items: center;
   background-color: white;
   border-bottom: 2px solid var(--primary-color);
   z-index: 50;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+  position: relative;
+  /* For absolute positioning of menu button */
+  min-height: 60px;
 }
 
 .menu-btn {
+  position: absolute;
+  left: 20px;
   background-color: var(--accent-orange);
   border: none;
-  padding: 10px 20px;
+  padding: 8px 15px;
   border-radius: 10px;
   font-family: var(--font-title);
-  font-size: 1rem;
-  /* Reduced from 1.2rem */
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
-  color: var(--text-color);
+  color: white;
   transition: all 0.2s;
   white-space: nowrap;
-  /* Prevent wrapping */
   box-shadow: 0 4px 0 #E65100;
-  /* Button 3D effect */
 }
 
 .menu-btn:hover {
@@ -318,8 +321,9 @@ body {
   }
 
   .menu-btn {
-    font-size: 1.1rem;
-    padding: 8px 15px;
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    left: 10px;
   }
 
   .book-view {
@@ -335,8 +339,9 @@ body {
   }
 
   .sentence {
-    padding: 15px;
-    border-left-width: 5px;
+    padding: 10px 12px;
+    /* Less padding to save vertical space */
+    border-left-width: 4px;
   }
 
   .story-title-display {
