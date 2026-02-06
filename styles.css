@@ -173,8 +173,8 @@ body {
 
 .site-title {
   font-family: var(--font-title);
-  font-size: 1.6rem;
-  /* Reduced from 2.2rem */
+  font-size: 1.1rem;
+  /* Reduced to ~2/3 of 1.6rem */
   font-weight: 700;
   color: var(--accent-orange);
   white-space: nowrap;
@@ -309,7 +309,8 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
   .site-title {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
+    /* Reduced font size for mobile */
   }
 
   .header {
@@ -326,9 +327,11 @@ body {
   }
 
   .page-content {
-    font-size: 1.5rem;
-    line-height: 2.1;
-    gap: 20px;
+    font-size: 1.1rem;
+    /* Reduced from 1.5rem to fit screen better */
+    line-height: 1.8;
+    /* Adjusted from 2.1 */
+    gap: 15px;
   }
 
   .sentence {
